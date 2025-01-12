@@ -1,0 +1,58 @@
+#Romina Florentino
+#SE126.04
+#W1D2 Lab #1: SE126 Room Capacity
+#1-11-2025 [W1D2]
+
+#PROGRAM PROMPT: This is a program that determines whether a meeting room is in violation of fire regulations regarding the maximum room capacity. The program will accept the maximum room capacity and the number of people attending the meeting. If the number of people is less than or equal to the maximum room capacity, the program announces that it is legal to hold the meeting and tells how many additional people may legally attend. If the number of people exceeds the maximum room capacity, the program announces that the meeting cannot be held as planned due to the fire regulation and tells how many people must be excluded in order to meet the fire regulations. The user should be allowed to enter and check as many rooms as they would like without exiting the program. 
+#--------------------------------------------------
+
+#VARIABLE DICTIONARY
+#roomCap - maximum room capacity
+#roomRequest - number of people attending the meeting
+#diff - difference between roomCap and roomRequest
+#promptUser - user input to determine if they would like to enter another room capacity
+
+
+#--------IMPORTS----------------------------------------------
+
+#--------FUNCTIONS--------------------------------------------
+def difference(): #<--FUNCTION HEADER
+    '''this function asks a user if they would like to enter another room capacity and amount of attendees, while performing calculations to determine if the room is in violation of fire regulations + error checking at the end'''
+    
+    roomCap = int(input("\t\tEnter the maximum room capacity as an integer (ex: 500): "))
+    roomRequest = int(input("\t\tEnter the number of people attending the meeting as an integer (ex: 250): "))
+
+    #calculations
+    diff = roomCap - roomRequest
+    return diff, roomCap
+
+
+def again(): #<--FUNCTION HEADER
+    '''this function asks a user if they would like to enter another'''
+
+    promptUser = input("\t\tWould you like to enter another room capacity? [y/n]: ").lower() #ans only exists within this function (local var)
+
+    #user error trap loop - ensures user provides valid value ---don't use if
+    while promptUser != "y" and promptUser != "n":
+        print("\n\t\t\t\t***INVALID ENTRY!***\n")
+        promptUser = input("\t\tWould you like to enter another room capacity? [y/n]: ").lower() #ans only exists within this function (local var)
+    return promptUser
+
+#--------MAIN CODE--------------------------------------------
+diff, roomCap = difference()
+#print (diff)
+while diff % 2 == 0:
+    print("\n\t\t***PERFECT EVEN.***\n")
+    promptUser = again()
+
+# while diff == 0:
+#     print("\n\t\t***PERFECT EVEN.***\n")
+#     again()
+
+# while diff > roomCap:
+#     print("\n\t\t***VIOLATION.***\n")
+#     again()
+
+# while diff < roomCap:
+#     print("\n\t\t***LEGAL.***\n")
+#     again()

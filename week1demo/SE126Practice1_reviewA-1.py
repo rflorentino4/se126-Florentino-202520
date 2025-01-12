@@ -1,6 +1,6 @@
 #Romina Florentino
 #SE126.04
-#W1D2 Lab Demo: SE116 Review
+#W1D2 Lab Demo: SE126 Review
 #1-9-2025 [W1D2]
 
 #PROGRAM PROMPT: This is a temperature conversion program, it allows a user to enter as many Fahrenheit temps as they'd like and then shows the Celsius conversion for each. It also counts the number of temps and determines the average of all temps entered. 
@@ -74,6 +74,3 @@ print("\t\tTOTAL TEMPS ENTERED: {0}".format(temp_count))
 print("\t\tAVGERAGE TEMP {0:.1f}F  |  {1:.1f}C".format(avg_tempF, avg_tempC))
 
 print("\n\n\t\tThank you for using the program. Goodbye.\n\n")
-
-
-
