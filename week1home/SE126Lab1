@@ -17,8 +17,7 @@
 
 #--------FUNCTIONS--------------------------------------------
 def difference(): #<--FUNCTION HEADER
-    '''this function asks a user if they would like to enter another room capacity and amount of attendees, while performing calculations to determine if the room is in violation of fire regulations + error checking at the end'''
-    
+    global diff, roomCap #I want to use these variables outside of the function
     roomCap = int(input("\t\tEnter the maximum room capacity as an integer (ex: 500): "))
     roomRequest = int(input("\t\tEnter the number of people attending the meeting as an integer (ex: 250): "))
 
@@ -26,33 +25,28 @@ def difference(): #<--FUNCTION HEADER
     diff = roomCap - roomRequest
     return diff, roomCap
 
-
-def again(): #<--FUNCTION HEADER
-    '''this function asks a user if they would like to enter another'''
-
-    promptUser = input("\t\tWould you like to enter another room capacity? [y/n]: ").lower() #ans only exists within this function (local var)
-
-    #user error trap loop - ensures user provides valid value ---don't use if
-    while promptUser != "y" and promptUser != "n":
-        print("\n\t\t\t\t***INVALID ENTRY!***\n")
-        promptUser = input("\t\tWould you like to enter another room capacity? [y/n]: ").lower() #ans only exists within this function (local var)
-    return promptUser
+def promptUser():
+    global userResponse
+    userResponse = input("Would you like to enter another room capacity? [y/n]: ").lower()
+    return userResponse
 
 #--------MAIN CODE--------------------------------------------
-diff, roomCap = difference()
-#print (diff)
-while diff % 2 == 0:
-    print("\n\t\t***PERFECT EVEN.***\n")
-    promptUser = again()
 
-# while diff == 0:
-#     print("\n\t\t***PERFECT EVEN.***\n")
-#     again()
+startPrompt = input("Would you like to enter a room capacity? [y/n]: ").lower()
 
-# while diff > roomCap:
-#     print("\n\t\t***VIOLATION.***\n")
-#     again()
-
-# while diff < roomCap:
-#     print("\n\t\t***LEGAL.***\n")
-#     again()
+while startPrompt == "y" or userResponse == "y":
+    print("okay i guess?")
+    difference()
+    if diff == 0:
+        print(f"\n\t\t***perfect even**)    ")
+        promptUser()
+    elif diff < 0:
+        newDiff = diff * -1
+        print(f"\n\t\t***VIOLATION***\n\t\tThe meeting cannot be held as planned due to fire regulations. {newDiff} people must be excluded in order to meet the fire regulations.")
+        promptUser()
+    elif diff < roomCap:
+        print(f"\n\t\t***LEGAL***\n\t\tIt is legal to hold the meeting. {diff} additional people may legally attend.")
+        promptUser()
+    else:
+        print("Invalid input. Please try again baby.")
+        promptUser() 
