@@ -18,33 +18,39 @@
 #--------FUNCTIONS--------------------------------------------
 def difference(roomCap, roomRequest): #<--FUNCTION HEADER
     diff = roomCap - roomRequest
+
     if diff == 0:
         print(f"\n\t\t***perfect even**)    ")
         promptUser()
+
     elif diff < 0:
         newDiff = diff * -1
         print(f"\n\t\t***VIOLATION***\n\t\tThe meeting cannot be held as planned due to fire regulations. {newDiff} people must be excluded in order to meet the fire regulations.")
         promptUser()
+
     elif diff < roomCap:
         print(f"\n\t\t***LEGAL***\n\t\tIt is legal to hold the meeting. {diff} additional people may legally attend.")
         promptUser()
+
     else:
         print("Invalid input. Please try again baby.")
         promptUser() 
     return diff, roomCap
 
+
 def promptUser(): #<--FUNCTION HEADER
+    print("three")
     userResponse = input("Would you like to enter a room capacity? [y/n]: ").lower()
-    if userResponse == "y":
-        return userResponse
-    elif userResponse == "n":
-        print("Goodbye!")
-        return userResponse
-    else:
+
+    while userResponse != "y" and userResponse != "n":
         print("Invalid input. Please enter a valid response of [y/n].")
+        userResponse = input("Would you like to enter a room capacity? [y/n]: ").lower()
+    return userResponse
+
 
 #--------MAIN CODE--------------------------------------------
-beginPrompt = "y"
+beginPrompt = promptUser()
+print("one")
 
 while beginPrompt == "y":
     promptName = input("Hello KT! Please enter the meeting name (ex: Ctrl Alt Elite):")
@@ -57,10 +63,14 @@ while beginPrompt == "y":
     diff, roomCap = difference(roomCap, roomRequest) #calling the function
 
     beginPrompt = promptUser()
+    print("two")
 
-    if roomCap or roomRequest % 1 != 0:
-        print("Invalid input. Please try entering a valid integer.")
 
 if beginPrompt == "n":
-    print("You have chosen to exit the program. Goodbye!")
-    exit()
+     print("You have chosen to exit the program. Goodbye!")
+     exit()
+
+
+else:
+    print("Invalid input. Please try again baby.")
+    beginPrompt = promptUser()
