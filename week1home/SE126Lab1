@@ -7,8 +7,8 @@
 #--------------------------------------------------
 
 #VARIABLE DICTIONARY
-#roomCap - maximum room capacity
-#roomRequest - number of people attending the meeting
+#roomCap - maximum room capacity (in assignment, labled as "max_cap")
+#roomRequest - number of people attending the meeting (in assignment, labled as "people")
 #diff - difference between roomCap and roomRequest
 #promptUser - user input to determine if they would like to enter another room capacity
 
@@ -16,27 +16,8 @@
 #--------IMPORTS----------------------------------------------
 
 #--------FUNCTIONS--------------------------------------------
-def difference(): #<--FUNCTION HEADER
-    global diff, roomCap #I want to use these variables outside of the function
-    roomCap = int(input("\t\tEnter the maximum room capacity as an integer (ex: 500): "))
-    roomRequest = int(input("\t\tEnter the number of people attending the meeting as an integer (ex: 250): "))
-
-    #calculations
+def difference(roomCap, roomRequest): #<--FUNCTION HEADER
     diff = roomCap - roomRequest
-    return diff, roomCap
-
-def promptUser():
-    global userResponse
-    userResponse = input("Would you like to enter another room capacity? [y/n]: ").lower()
-    return userResponse
-
-#--------MAIN CODE--------------------------------------------
-
-startPrompt = input("Would you like to enter a room capacity? [y/n]: ").lower()
-
-while startPrompt == "y" or userResponse == "y":
-    print("okay i guess?")
-    difference()
     if diff == 0:
         print(f"\n\t\t***perfect even**)    ")
         promptUser()
@@ -50,3 +31,36 @@ while startPrompt == "y" or userResponse == "y":
     else:
         print("Invalid input. Please try again baby.")
         promptUser() 
+    return diff, roomCap
+
+def promptUser(): #<--FUNCTION HEADER
+    userResponse = input("Would you like to enter a room capacity? [y/n]: ").lower()
+    if userResponse == "y":
+        return userResponse
+    elif userResponse == "n":
+        print("Goodbye!")
+        return userResponse
+    else:
+        print("Invalid input. Please enter a valid response of [y/n].")
+
+#--------MAIN CODE--------------------------------------------
+beginPrompt = "y"
+
+while beginPrompt == "y":
+    promptName = input("Hello KT! Please enter the meeting name (ex: Ctrl Alt Elite):")
+
+    print(f"\n\t\tWelcome to the *{promptName}* meeting room capacity program!\n")
+
+    roomCap = int(input(f"\t\tEnter the maximum room capacity for *{promptName}* as an integer (ex: 500): "))
+    roomRequest = int(input(f"\t\tEnter the number of attendees for *{promptName}* as an integer (ex: 250): "))
+
+    diff, roomCap = difference(roomCap, roomRequest) #calling the function
+
+    beginPrompt = promptUser()
+
+    if roomCap or roomRequest % 1 != 0:
+        print("Invalid input. Please try entering a valid integer.")
+
+if beginPrompt == "n":
+    print("You have chosen to exit the program. Goodbye!")
+    exit()
