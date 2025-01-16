@@ -19,6 +19,8 @@ import csv
 totalRec = 0
 
 
+
+
 #--connected to file-------------------------------------------------
 with open("week2home/filehandling.csv") as csvfile: #we need to manually change the forward slash to backslash -- we want it to process a file and not run it as \c like we would for \n or \t
 
@@ -28,17 +30,38 @@ with open("week2home/filehandling.csv") as csvfile: #we need to manually change 
     
     for rec in file:
         #below code occurs for every record (row) in the file (textfile/2D list)
-        type = rec[0]
-        brand = rec[1]
+        if rec[0] == "D":
+                type = "Desktop"
+        elif rec[0] == "L":
+                type = "Laptop"
+        else:
+                type = "ERROR --" + str(rec[0])
+        #print(type)
+        if rec [1] == "DL":
+                brand = "Dell"
+        elif rec[1] == "GW":
+                brand = "Gateway"
+        elif rec[1] == "HP":
+                brand = rec[1]
+        else:
+                brand = "ERROR --" + str(rec[1])
+        
         cpu = rec[2]
         ram = rec[3]
         firstDisk = rec[4]
         nohdd = rec[5]
-        secondDisk = rec[6]
-        os = rec[7]
-#        yr = rec[8]
+        
+        if rec[5] == "1":
+                secondDisk = "" #this will be empty
+                os = rec[6]
+                yr = rec[7]
+        elif rec[5] == "2":
+                secondDisk = rec[6]
+                os = rec[7]
+                yr = rec[8]
+             
 
-        print(f"{type:3} {brand:5} {cpu:5} {ram:5} {firstDisk:5}{nohdd:5} {secondDisk:5} {os:5}")
+        print(f"{type:3} {brand:5} {cpu:5} {ram:5} {firstDisk:5}{nohdd:5} {secondDisk:5} {os:5} {yr:5} ")
 
 #         name = rec[0]
 #         max = int(rec[1]) #ALL TEXT DATA is always seen as strings unless otherwise stated, aka casting it as a number
@@ -59,5 +82,4 @@ with open("week2home/filehandling.csv") as csvfile: #we need to manually change 
 # #--disconnected from file--------------------------------------------
 
 # #display final data (counting vars)
-# print(f"\nRooms currently OVER capacity: {roomsOver}")
 # print(f"\nTotal rooms in the file: {totalRec}")
