@@ -12,7 +12,7 @@ totalRecords = 0 #holds total number of records in the file
 with open("week2demo\simple.csv") as csvfile:
     #make sure to indent inside of code block
     #allow the csv.reader() to access and read the file path; stores contents to 'file' [a 2D list / matrix / table]
-    file =csv.reader(csvfile)
+    file = csv.reader(csvfile)
 
 
     #print for headers, NEEDS TO BE OUTSIDE OF THE LOOP
