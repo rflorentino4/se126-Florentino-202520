@@ -33,7 +33,7 @@ with open("week3d2demo/class_grades.csv") as csvfile: #DON'T forget to change th
         #store data from current record to corresponding lists (each field is its own!)
         #.append() -> this puts data at THE END aka next available space in the list
 
-        #paralle llists --> data dispersed across lists, connected by the same index
+        #parallel lists --> data dispersed across lists, connected by the same index
         firstName.append(rec[0]) #firstName is currently the empty list, here we are making so that everything in rec [0] which is all the first names, goes into the firstName variable 
         lastName.append(rec[1])
         test1.append(int(rec[2]))

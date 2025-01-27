@@ -28,25 +28,74 @@ registered = []
 voted = []
 
 
+#initializations
+notEligible = 0
+oldNotReg = 0
+eligibleNotVote = 0
+didVote = 0
+
+
 #connected to file-------
 with open("week3d2home2/voters_202040.csv") as csvfile: #don't forget to CHANGE the SLASH, you'll see a weird color if not
-    print(f'\n{"Type":9} {"Brand":8} {"CPU":4} {"RAM":4} {"1st Disk":10} {"No HDD":7} {"2nd Disk":9} {"OS":6} {"YR"}') #this can be wherever you want, as long as it's NOT in the FOR LOOP ++++ be care of how you use single & double quotes, must use both to differentiate (I think? this works tho)
+    print(f'\n{"ID #:":7} {"Age":7} {"Registered":12} {"Voted":8}') #this can be wherever you want, as long as it's NOT in the FOR LOOP ++++ be care of how you use single & double quotes, must use both to differentiate (I think? this works tho)
 
     file = csv.reader(csvfile)
 
     for rec in file: #occurs for every record/row in the textfile/2D list 
-        #index 0 = voter ID
         ids.append(rec[0])
 
-        #index 1 = age
-        if int(rec[1]) < 18:
-            notEligible.append(rec[1])
+        age.append(int(rec[1]))
 
-        elif int(rec[1]) >= 18 and rec[2] == "N":
-            oldNotReg.append(rec[1])
+        registered.append(rec[2])
 
-        elif int(rec[1]) >= 18 and rec[2] == "Y" and rec[3] == "N":
-            eligibleNotVote.append(rec[1])
+        voted.append(rec[3])
+
+    
+
+
+
+    #     if int(rec[1]) < 18:
+    #         notEligible += 1
+    #         age.append(rec[1])
+        
+    # for index in range (0,len(age)):
+    #     print(f"{ids[index]}  {age[index]} {registered[index]}  {voted[index]}")
+
+for index in range(0, len(ids)): #this will run for as many i's/indexes there are in the list --incrementing by 1 each time
+    print(f"\n{ids[index]}   {age[index]}   {registered[index]}   {voted[index]}")
+
+print(f"\nTotal records in the file: {len(ids)}\n")
+
+
+
+
+
+
+
+
+
+
+
+        # #index 0 = voter ID
+        # ids.append(rec[0])
+
+        # #index 1 = age
+        # if int(rec[1]) < 18:
+        #     age.append("Not eligible")
+        #     notEligible += 1
+
+        # elif int(rec[1]) >= 18 and rec[2] == "N":
+        #     age.append("Old enough, not registered")
+        #     oldNotReg += 1
+
+        # elif int(rec[1]) >= 18 and rec[2] == "Y" and rec[3] == "N":
+        #     age.append("Eligible, not voted")
+        #     eligibleNotVote += 1
+
+        # elif int(rec[1]) >= 18 and rec[2] == "Y" and rec[3] == "Y":
+        #     age.append("Voted")
+        #     didVote += 1
+        
         
 #index 0 = voter ID
 #index 1 = age
