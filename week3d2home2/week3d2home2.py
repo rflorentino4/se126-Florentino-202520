@@ -37,67 +37,51 @@ didVote = 0
 
 #connected to file-------
 with open("week3d2home2/voters_202040.csv") as csvfile: #don't forget to CHANGE the SLASH, you'll see a weird color if not
-    print(f'\n{"ID #:":7} {"Age":7} {"Registered":12} {"Voted":8}') #this can be wherever you want, as long as it's NOT in the FOR LOOP ++++ be care of how you use single & double quotes, must use both to differentiate (I think? this works tho)
+    print(f'\n{"ID #:":12} {"Age":12} {"Registered":12} {"Voted"}') #this can be wherever you want, as long as it's NOT in the FOR LOOP ++++ be care of how you use single & double quotes, must use both to differentiate)
+    print("--------------------------------------------")
 
     file = csv.reader(csvfile)
 
     for rec in file: #occurs for every record/row in the textfile/2D list 
+        
+        #rec0 = ID
         ids.append(rec[0])
 
+        #rec1 = age
+        if int(rec[1]) < 18:
+            notEligible += 1
+
+        elif int(rec[1]) >= 18 and rec[2] == "N":
+            oldNotReg += 1
+
+        elif rec[2] == "Y" and rec[3] == "N":
+            eligibleNotVote += 1
+
+        elif rec[3] == "Y":
+            didVote += 1
+            
         age.append(int(rec[1]))
 
+        #rec2 = registered
         registered.append(rec[2])
 
+        #rec3 = voted
         voted.append(rec[3])
 
-    
 
-
-
-    #     if int(rec[1]) < 18:
-    #         notEligible += 1
-    #         age.append(rec[1])
-        
-    # for index in range (0,len(age)):
-    #     print(f"{ids[index]}  {age[index]} {registered[index]}  {voted[index]}")
+#disconnected from file-------
 
 for index in range(0, len(ids)): #this will run for as many i's/indexes there are in the list --incrementing by 1 each time
-    print(f"\n{ids[index]}   {age[index]}   {registered[index]}   {voted[index]}")
 
-print(f"\nTotal records in the file: {len(ids)}\n")
-
-
+    #use the index to access & print the data in each list
+    print(f"\n{ids[index]:10}   {str(age[index]):14}   {registered[index]:8}   {voted[index]}")
 
 
-
-
-
-
-
-
-
-        # #index 0 = voter ID
-        # ids.append(rec[0])
-
-        # #index 1 = age
-        # if int(rec[1]) < 18:
-        #     age.append("Not eligible")
-        #     notEligible += 1
-
-        # elif int(rec[1]) >= 18 and rec[2] == "N":
-        #     age.append("Old enough, not registered")
-        #     oldNotReg += 1
-
-        # elif int(rec[1]) >= 18 and rec[2] == "Y" and rec[3] == "N":
-        #     age.append("Eligible, not voted")
-        #     eligibleNotVote += 1
-
-        # elif int(rec[1]) >= 18 and rec[2] == "Y" and rec[3] == "Y":
-        #     age.append("Voted")
-        #     didVote += 1
-        
-        
-#index 0 = voter ID
-#index 1 = age
-#index 2 = registered
-#index 3 = voted
+#print statements for the totals + goodbye func
+print(f"\n\n\tTotal records in the file: {len(ids)}")
+print("\t-----------------------------")
+print(f"\nNumber of individuals not eligible to register: {notEligible}\n")
+print(f"Number of individuals who are old enough to vote but have not registered: {oldNotReg}\n")
+print(f"Number of individuals who are eligible to vote but did not vote: {eligibleNotVote}\n")
+print(f"Number of individuals who did vote: {didVote}\n")
+byeKT()
