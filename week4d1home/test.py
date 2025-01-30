@@ -10,9 +10,6 @@
 import csv
 
 #FUNCTIONS--------------
-def byeKT():
-    print(f"\n{'Have a good day KT :]' : ^65}\n")
-#--
 def letter(num):
     if num >= 90:
         let = "A"
@@ -122,8 +119,8 @@ while answer == "y":
             print(f"Your search for {searchLast} was FOUND!")
             print(f"{fName[found]:10}   {lName[found]:10}   {test1[found]:3}   {test2[found]:3}   {test3[found]:3}   {numAvg[found]:8.2f}   {letAvg[found]}")
         else:
-            print(f"\tYour search for {searchLast} was *NOT* FOUND!")
-            print("\tCheck your spelling and try again.")
+            print(f"Your search for {searchLast} was *NOT* FOUND!")
+            print("Check your spelling and try again.")
 
     elif searchType == "2":
         print("\t\nSEARCH BY FIRST NAME")
@@ -146,8 +143,8 @@ while answer == "y":
             print(f"Your search for {searchName} was FOUND!")
             print(f"{fName[found]:10}   {lName[found]:10}   {test1[found]:3}   {test2[found]:3}   {test3[found]:3}   {numAvg[found]:8.2f}   {letAvg[found]}")
         else:
-            print(f"\tYour search for {searchName} was *NOT* FOUND!")
-            print("\tCheck your spelling and try again.")
+            print(f"Your search for {searchName} was *NOT* FOUND!")
+            print("Check your spelling and try again.")
 
     elif searchType == "3":
         print("\tSEARCH BY LETTER GRADE")
@@ -178,11 +175,12 @@ while answer == "y":
 
     elif searchType == "4":
         print("\tEXITING\n")
-        byeKT()
         answer = "n"
 
     else:
-        print("\n\t*INVALID ENTRY!!*")
+        print("test5")
+        print("*INVALID ENTRY!!*")
+
 
     #build a way out of the loop
     if searchType == "1" or searchType == "2" or searchType =="3": #only used when user doesn't specify 4 to exit
