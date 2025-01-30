@@ -85,9 +85,11 @@ print("------------------------------------------------------------")
 
 print(f"\nThere are {len(fName)} students in the file.\n")
 
+print(f"**PART THREE**")
+
 #write a program that allows a user to repeatedly search for a stdent by their last name or their letter grade; when a specific user is found, display all data relevant on that user, when not found alert the user. When searching by letter grade, display all of the students' data when found, or alert the user that o student grades fit that description
 
-print("\n\nWelecome to the Student Seach Program\n\n")
+print("\nWelecome to the Student Seach Program\n\n")
 
 answer = input("Would you like to begin searching? [y/n]: ").lower()
 
