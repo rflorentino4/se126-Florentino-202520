@@ -8,6 +8,8 @@
 #we could do binary for name and age bc it's already ordered, but the color IS NOT --that would have to be bubble sorted first ---> KT mentioned that even if two of the three options on the list are sorted, it will still cause issues that the third isn't -> why is that?
 #we ran into an issue after doing binary for both + bubble for only colors, because once it runs it sorts colors CHANGING names/their index values, so ---- you must bubble sort BOTH BEFORE binary
 #only library needs binary, everything else is sequential
+#2d=table
+#searching + sorting + 2d list question = quiz
 #*********************************************************
 
 import csv 
@@ -150,4 +152,19 @@ print("\nThank you for using my program.\n\t\tGOODBYE!\n")
 
 #------2D Lists ----------------------------------------------------------------------------------------------
 #2D lists are just lists that contain 1D lists inside of them! 
+print(f"\n2D Lists:")
+dataFile = []
 
+with open("week7d2demo\simple-2.csv") as csvfile:
+    file = csv.reader(csvfile) #technically, this is already a 2d list
+
+    for rec in file: #loop thru all recs in the file
+        dataFile.append(rec) 
+
+    
+for index in range(0, len(dataFile)):
+    print(f"dataFile[{index}]: {dataFile[index]}")
+    for j in range(0, len(dataFile[index])): #this helps if uneven
+        #print(f"\tdataFile[{index}][{j}]: {dataFile[index][j]}")
+        print(f"\t{dataFile[index][j]}", end="") #look at the difference b/t these two
+    print()
