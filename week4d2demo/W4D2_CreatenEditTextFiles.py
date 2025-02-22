@@ -74,7 +74,7 @@ found = []
 search = input("Enter the color you are looking for:")
 
 for index in range(0, len(color1)):
-    if search.ower() in color1[index] or search.lower() in color2[index]:
+    if search.lower() in color1[index] or search.lower() in color2[index]:
         found.append(index)
 
 print("Here is what the found list contains:")
