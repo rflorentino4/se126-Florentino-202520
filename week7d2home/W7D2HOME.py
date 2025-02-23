@@ -23,7 +23,7 @@ def menu():
     print("4. Search by GENRE")
     print("5. Search by LIBRARY NUMBER")
     print("6. Show all AVAILABLE books")
-    print("7. Show all UNAVAILABLE/ON LOAN books")
+    print("7. Show all ON LOAN/UNAVAILABLE books")
     print("________________")
     print("\n8. **EXIT**\n")
 
@@ -209,7 +209,7 @@ while ans == "y":
         print()
 
     elif choice == "8":
-        print("\tEXITING\n")
+        print("\n\tEXITING")
         byeKT()
         ans = "n"
 
