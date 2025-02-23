@@ -67,7 +67,7 @@ while ans == "y":
     choice = menu()
 
     if choice not in validMenu:
-        print("\n\tINVALID ENTRY!!!! Please try again ;[ \n")
+        print("\n\tINVALID ENTRY!!!! Please try again ;[ ")
 
     elif choice == "1":
         print("\n\t\t\t\t\t\t\t~ All Titles ~")
@@ -95,20 +95,21 @@ while ans == "y":
         found = "x"
 
         #sequential search
-        search = input("Enter the TITLE you are looking for: ")
+        searchTitle = input("Enter the TITLE you are looking for: ")
 
         for index in range(0, len(title)):
-            if search.lower() in title[index].lower():
+            if searchTitle.lower() in title[index].lower():
                 found = index
 
         if found != "x":
             #Found it
-                print(f"\nWe found your search for {search}, details below: ")
+                print(f"\nWe found your search for {searchTitle}, details below: ")
                 print(f"\n{'TITLE':33}   {'AUTHOR':20}   {'GENRE':20}   {'PAGE COUNT':12}   {'STATUS':12}   {'LIBRARY NUMBER':6}")
+                print("------------------------------------------------------------------------------------------------------------------------------")
                 print(f"{title[found]:33}   {author[found]:20}   {genre[found]:20}   {pageCount[found]:12}   {status[found]:12}   {libraryNumber[found]:6}")
         
         else:
-            print(f"\nYour search for {search} is complete, no matches found ;(\n")
+            print(f"\nYour search for {searchTitle} is complete, no matches found ;(\n")
 
     elif choice == "3":
         print("\n\t\t\t\t\t\t\t~ Search by AUTHOR ~")
@@ -116,18 +117,106 @@ while ans == "y":
         found = []
 
         #sequential search
-        search = input("Enter the AUTHOR you are looking for: ")
+        searchAuthor = input("Enter the AUTHOR you are looking for: ")
 
         for index in range(0, len(author)):
-            if search.lower() in author[index].lower():
-                found.append({{title[index]:33}, author[index], genre[index], pageCount[index], status[index], libraryNumber[index]})
+            if searchAuthor.lower() in author[index].lower():
+                found.append(index)
         
-        for index in range(0, len(found)):
-            #Found it
-            print(f"\nWe found your search for {search}, details below: ")
-            print(f"\n{'TITLE':33}   {'AUTHOR':20}   {'GENRE':20}   {'PAGE COUNT':12}   {'STATUS':12}   {'LIBRARY NUMBER':6}")
-            print(f"\t{found[index]}")
-
+        if not found: #this runs if list is empty -> meaning it did NOT find anything
+            print(f"\nYour search for {searchAuthor} was *NOT* FOUND!")
+            print("Check your spelling and try again.")
             
-        if not found: #if the list is empty
-            print(f"\nYour search for {search} is complete, no matches found ;(\n")
+        else:
+            print(f"\t\nYour search for {searchAuthor} was FOUND!")
+            print(f"\n{'TITLE':33}   {'AUTHOR':20}   {'GENRE':20}   {'PAGE COUNT':12}   {'STATUS':12}   {'LIBRARY NUMBER':6}")
+            print("------------------------------------------------------------------------------------------------------------------------------")
+
+            #found is a list with multiple pieces of data - must use a FOR LOOP to see all
+            for index in range(0, len(found)):
+                print(f"{title[found[index]]:33}   {author[found[index]]:20}   {genre[found[index]]:20}   {pageCount[found[index]]:12}   {status[found[index]]:12}   {libraryNumber[found[index]]:6}")
+            print()
+    
+    elif choice == "4":
+        print("\n\t\t\t\t\t\t\t~ Search by GENRE ~")
+
+        found = []
+
+        #sequential search
+        searchGenre = input("Enter the GENRE you are looking for: ")
+
+        for index in range(0, len(genre)):
+            if searchGenre.lower() in genre[index].lower():
+                found.append(index)
+        
+        if not found: #this runs if list is empty -> meaning it did NOT find anything
+            print(f"\tYour search for {searchGenre} was *NOT* FOUND!")
+            print("\tCheck your spelling and try again.")
+            
+        else:
+            print(f"\t\nYour search for {searchGenre} was FOUND!")
+            print(f"\n{'TITLE':33}   {'AUTHOR':20}   {'GENRE':20}   {'PAGE COUNT':12}   {'STATUS':12}   {'LIBRARY NUMBER':6}")
+            print("------------------------------------------------------------------------------------------------------------------------------")
+
+            #found is a list with multiple pieces of data - must use a FOR LOOP to see all
+            for index in range(0, len(found)):
+                print(f"{title[found[index]]:33}   {author[found[index]]:20}   {genre[found[index]]:20}   {pageCount[found[index]]:12}   {status[found[index]]:12}   {libraryNumber[found[index]]:6}")
+            print()
+
+    elif choice == "5":
+        print("\n\t\t\t\t\t\t\t~ Search by LIBRARY NUMBER ~")
+
+        found = "x"
+
+        #sequential search
+        searchNumber = input("Enter the LIBRARY NUMBER you are looking for: ")
+
+        for index in range(0, len(libraryNumber)):
+            if searchNumber.lower() == libraryNumber[index].lower():
+                found = index
+
+        if found != "x":
+            #Found it
+                print(f"\nWe found your search for {searchNumber}, details below: ")
+                print(f"\n{'TITLE':33}   {'AUTHOR':20}   {'GENRE':20}   {'PAGE COUNT':12}   {'STATUS':12}   {'LIBRARY NUMBER':6}")
+                print("------------------------------------------------------------------------------------------------------------------------------")
+                print(f"{title[found]:33}   {author[found]:20}   {genre[found]:20}   {pageCount[found]:12}   {status[found]:12}   {libraryNumber[found]:6}")
+                print()
+        
+        else:
+            print(f"\nYour search for {searchNumber} is complete, no matches found ;(\n")
+
+    elif choice == "6":
+        print("\n\t\t\t\t\t\t\t~ All Available Books ~")
+
+        print(f"\n{'TITLE':33}   {'AUTHOR':20}   {'GENRE':20}   {'PAGE COUNT':12}   {'STATUS':12}   {'LIBRARY NUMBER':6}")
+        print("------------------------------------------------------------------------------------------------------------------------------")
+
+        for index in range (0,len(status)):
+            if status[index].lower() == "available":
+                print(f"{title[index]:33}   {author[index]:20}   {genre[index]:20}   {pageCount[index]:12}   {status[index]:12}   {libraryNumber[index]:6}")
+        print()
+
+    elif choice == "7":
+        print("\n\t\t\t\t\t\t\t~ All On Loan/Unavailable Books ~")
+
+        print(f"\n{'TITLE':33}   {'AUTHOR':20}   {'GENRE':20}   {'PAGE COUNT':12}   {'STATUS':12}   {'LIBRARY NUMBER':6}")
+        print("------------------------------------------------------------------------------------------------------------------------------")
+
+        for index in range (0,len(status)):
+            if status[index].lower() == "on loan":
+                print(f"{title[index]:33}   {author[index]:20}   {genre[index]:20}   {pageCount[index]:12}   {status[index]:12}   {libraryNumber[index]:6}")
+        print()
+
+    elif choice == "8":
+        print("\tEXITING\n")
+        byeKT()
+        ans = "n"
+
+    else:
+        print("\n\t*INVALID ENTRY!!*")
+        print("\n\tPlease try again ;[\n")    
+
+        #build a way out of the loop
+    if choice == "1" or choice == "2" or choice == "3" or choice == "4" or choice == "5" or choice == "6" or choice == "7": #only used when user doesn't specify "8" to exit
+        ans = input("\t\t\nWould you like to search again? [y/n]: \n").lower()
