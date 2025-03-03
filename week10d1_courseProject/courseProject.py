@@ -17,6 +17,6 @@ with open("week10d1_courseProject\data.csv") as csvfile:
     file = csv.reader(csvfile)
 
     for rec in file:
-        
+        print()
 
 #DISCONNECTED TO FILE-------------------------
