@@ -59,6 +59,7 @@ while ans == "y":
     elif choice == "1":
         print("\n\t\t\t\t\t\t\t~ Show ALL words ~ ")
 
+        print("\n~ Words - Definitions ~ ")
         #print all words + corresponding definitions
         for key in wordsDict:
             print(f"\n{key} - {wordsDict[key]}")
@@ -76,6 +77,7 @@ while ans == "y":
 
         if found != "x":
             print("\nYour word was found! :] ")
+            print("\n~ Words - Definitions ~ ")
             print(f"\n{found} - {wordsDict[found]}")
 
         else:
@@ -105,6 +107,7 @@ while ans == "y":
         #convert back 2 dict
         wordsDict = dict(wordsList)
 
+        print("\n~ Words - Definitions ~ ")
         #print all words + corresponding definitions ALPHABETICALLY now
         for key in wordsDict:
             print(f"\n{key} - {wordsDict[key]}")
