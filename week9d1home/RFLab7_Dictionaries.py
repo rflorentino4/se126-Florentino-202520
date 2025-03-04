@@ -2,6 +2,8 @@
 #Romina Florentino 
 #SE126.04 - 2025
 #----------------------------------------------
+#PROGRAM PROMPT: 
+#Create a dictionary to store the data from the file. Once the dictionary has been fully populated with file data, create a menu system that allows the user to search for a word, add a word, show all words, or show all words alphabetically. The program should not end unless the user chooses option 4 to exit. All searches should not be case sensitive.
 
 #this file uses: words.csv
 
@@ -10,7 +12,7 @@ import csv
 
 #FUNCTIONS OR DICTS----------------------------
 def byeKT():
-    print(f"\n\t\t\t\tHave a good day KT :]\n")
+    print(f"\n\t\t\t\t\t   Have a good day KT :]\n")
 
 def menu():
     print("\n----------------------------------------------------------------------")
@@ -38,10 +40,12 @@ wordsDict = {}
 validMenu = ["1", "2", "3", "3.5", "4"]
 
 #open file and read data 2 the dict
-with open("week9d1home\words.csv") as csvfile:
+with open("week9d1home/words.csv") as csvfile:
     file = csv.reader(csvfile)
     for rec in file:
-        wordsDict.update({rec[0] : rec[1]})  #similar to .append in lists +  follows same key value pairing to denote it's a dict (so curl braces)
+        key = rec[0] #word
+        value = rec[1] #definition
+        wordsDict[key] = value #add 2 dict
 
 #disconnected from file------------------------
 ans = "y"
@@ -53,23 +57,59 @@ while ans == "y":
         print("\n\tINVALID ENTRY!!!! Please try again ;[ ")
 
     elif choice == "1":
-        print("\n\t\t\t\t\t\t~ Show ALL words ~")
+        print("\n\t\t\t\t\t\t\t~ Show ALL words ~ ")
 
+        #print all words + corresponding definitions
+        for key in wordsDict:
+            print(f"\n{key} - {wordsDict[key]}")
 
+    elif choice == "2":
+        print("\n\t\t\t\t\t\t~ SEARCH for a word ~ ")
 
+        search = input("\nEnter the word you're looking for: ")
 
+        #sequential search
+        found = "x"
+        for key in wordsDict:
+            if search.lower() == key.lower():
+                found = key
+
+        if found != "x":
+            print("\nYour word was found! :] ")
+            print(f"\n{found} - {wordsDict[found]}")
+
+        else:
+            print("\nYour word was NOT found ;[ ")
+            print("Please double check your spelling and try again... ")
+
+    elif choice == "3":
+        print("\n\t\t\t\t\t\t~ ADD a word ~")
+
+        newWord = input("\nEnter the word you would like to add: ")
+        newDef = input(f"Enter the definition of '{newWord}': ")
+
+        wordsDict[newWord] = newDef #add new word 2 dict ---> no need 4 update() Mina
+            
     elif choice == "3.5":
         print("\n\t\t\t\t~ Show all words ALPHABETICALLY ~")
 
-        #BUBBLE SORT -- *always* sort BEFORE we binary search --
-        for index in range(len(wordsDict) - 1):
-            for j in range(len(wordsDict) - 1):
-                if wordsDict[j] > wordsDict[j + 1]:
-                    #SWAP
-                    swap(j, rec[0])
-                    swap(j, rec[1])
+        #make the dict a list 4 sorting
+        wordsList = list(wordsDict.items())
 
+        #BUBBLE SORT
+        for index in range(0,len(wordsList) - 1):
+            for j in range(0,len(wordsList) - 1 - index):
+                if wordsList[j][0] > wordsList[j + 1][0]:
+                    swap(j, wordsList)
 
-        #display all titles
-        for index in range(0, len(wordsDict)):
-            print()
+        #convert back 2 dict
+        wordsDict = dict(wordsList)
+
+        #print all words + corresponding definitions ALPHABETICALLY now
+        for key in wordsDict:
+            print(f"\n{key} - {wordsDict[key]}")
+        
+    elif choice == "4":
+        print("\n\t\t\t\t\t\t~ EXITING ~")
+        ans = "n"
+        byeKT()
